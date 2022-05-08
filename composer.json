@@ -1,0 +1,17 @@
+{
+    "name": "gz-hejiehui\/xbox-deal-api",
+    "description": "a xbox product deal api",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "gz-hejiehui",
+            "email": "gz-hejiehui@outlook.com"
+        }
+    ],
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "GzHejiehui\\XboxDealApi\\": "src"
+        }
+    }
+}

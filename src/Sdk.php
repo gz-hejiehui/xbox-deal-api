@@ -33,12 +33,11 @@ final class Sdk
     /**
      * Channel Endpoint
      *
-     * @param string $name The channel name
      * @return Channel
      */
-    public function channel(string $name): Channel
+    public function channel(): Channel
     {
-        return new Channel($this, $name);
+        return new Channel($this);
     }
 
     /**

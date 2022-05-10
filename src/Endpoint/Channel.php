@@ -9,8 +9,6 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 final class Channel
 {
-    private const HOST = 'https://reco-public.rec.mp.microsoft.com';
-
     /**
      * @var Sdk $sdk
      */
@@ -19,17 +17,26 @@ final class Channel
     /**
      * @var string $name
      */
-    private string $name;
+    private string $name = '';
 
     /**
      * @var array $queryParams
      */
     private array $queryParams = [];
 
-    public function __construct(Sdk $sdk, string $name)
+    public function __construct(Sdk $sdk)
     {
         $this->sdk = $sdk;
+    }
+
+    /**
+     * @param $name
+     * @return $this
+     */
+    public function name($name): self
+    {
         $this->name = trim($name);
+        return $this;
     }
 
     /**
@@ -41,7 +48,6 @@ final class Channel
         $this->queryParams['ItemTypes'] = trim($itemType);
         return $this;
     }
-
 
     /**
      * @param string $language
@@ -117,7 +123,11 @@ final class Channel
     public function get(): array
     {
         $queryString = http_build_query($this->getQueryParams());
-        $url = sprintf('%s/channels/Reco/V8.0/Lists/Computed/%s?%s', self::HOST, $this->name, $queryString);
+        $url = sprintf(
+            'https://reco-public.rec.mp.microsoft.com/channels/Reco/V8.0/Lists/Computed/%s?%s',
+            $this->name,
+            $queryString
+        );
 
         return ResponseMediator::getContent($this->sdk->getHttpClient()->get($url));
     }

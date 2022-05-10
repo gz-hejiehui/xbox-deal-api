@@ -17,4 +17,5 @@ $options = new \GzHejiehui\XboxDealApi\Options([
 ]);
 
 $sdk = new \GzHejiehui\XboxDealApi\Sdk($options);
-print_r($sdk->channel('TopFree')->language('zh-HK')->skipItems(116)->get());
+//print_r($sdk->channel('TopFree')->language('zh-HK')->skipItems(116)->get());
+print_r($sdk->product()->bigIds('C48ZFTBQ17Q3')->get());

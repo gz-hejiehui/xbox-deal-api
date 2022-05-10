@@ -3,6 +3,7 @@
 namespace GzHejiehui\XboxDealApi;
 
 use GzHejiehui\XboxDealApi\Endpoint\Channel;
+use GzHejiehui\XboxDealApi\Endpoint\Product;
 use Http\Client\Common\HttpMethodsClientInterface;
 use Http\Client\Common\Plugin\HeaderDefaultsPlugin;
 
@@ -29,8 +30,24 @@ final class Sdk
         return $this->clientBuilder->getHttpClient();
     }
 
+    /**
+     * Channel Endpoint
+     *
+     * @param string $name The channel name
+     * @return Channel
+     */
     public function channel(string $name): Channel
     {
         return new Channel($this, $name);
+    }
+
+    /**
+     * Product Endpoint
+     *
+     * @return Product
+     */
+    public function product(): Product
+    {
+        return new Product($this);
     }
 }

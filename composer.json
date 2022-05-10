@@ -8,10 +8,18 @@
             "email": "gz-hejiehui@outlook.com"
         }
     ],
-    "require": {},
     "autoload": {
         "psr-4": {
             "GzHejiehui\\XboxDealApi\\": "src"
         }
+    },
+    "require": {
+        "php": ">=7.4",
+        "php-http/message": "^1.13",
+        "php-http/discovery": "^1.14",
+        "php-http/client-common": "^2.5",
+        "php-http/curl-client": "^2.2",
+        "guzzlehttp/psr7": "^2.2",
+        "ext-json": "*"
     }
 }

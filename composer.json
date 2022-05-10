@@ -13,6 +13,11 @@
             "GzHejiehui\\XboxDealApi\\": "src"
         }
     },
+    "autoload-dev": {
+        "psr-4": {
+            "GzHejiehui\\XboxDealApi\\Tests\\": "tests"
+        }
+    },
     "require": {
         "php": ">=7.4",
         "php-http/message": "^1.13",
@@ -21,5 +26,10 @@
         "php-http/curl-client": "^2.2",
         "guzzlehttp/psr7": "^2.2",
         "ext-json": "*"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^9.5",
+        "php-http/mock-client": "^1.5",
+        "laminas/laminas-diactoros": "^2.10"
     }
 }

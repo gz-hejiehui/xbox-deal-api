@@ -2,6 +2,13 @@
 
 <p align="center"> An SDK that can help you get the Xbox product information.</p>
 
+<p align="center">
+<a href="https://packagist.org/packages/gz-hejiehui/xbox-deal-api"><img src="https://poser.pugx.org/gz-hejiehui/xbox-deal-api/v/stable.svg" alt="Latest Stable Version"></a>
+<a href="https://packagist.org/packages/gz-hejiehui/xbox-deal-api"><img src="https://poser.pugx.org/gz-hejiehui/xbox-deal-api/v/unstable.svg" alt="Latest Unstable Version"></a>
+<a href="https://packagist.org/packages/gz-hejiehui/xbox-deal-api"><img src="https://poser.pugx.org/gz-hejiehui/xbox-deal-api/downloads" alt="Total Downloads"></a>
+<a href="https://packagist.org/packages/gz-hejiehui/xbox-deal-api"><img src="https://poser.pugx.org/gz-hejiehui/xbox-deal-api/license" alt="License"></a>
+</p>
+
 ## Getting Started
 
 ### Requirements

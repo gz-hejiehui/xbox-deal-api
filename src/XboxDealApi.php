@@ -13,9 +13,22 @@ use Psr\Http\Message\RequestFactoryInterface;
 
 final class XboxDealApi
 {
+    /**
+     * @var ClientInterface The PSR-18 HTTP client.
+     */
     private ClientInterface $httpClient;
+
+    /**
+     * @var RequestFactoryInterface The PSR-18 HTTP request factory.
+     */
     private RequestFactoryInterface $requestFactory;
 
+    /**
+     * XboxDealApi constructor.
+     *
+     * @param ClientInterface $httpClient
+     * @param RequestFactoryInterface $requestFactory
+     */
     public function __construct(ClientInterface $httpClient, RequestFactoryInterface $requestFactory)
     {
         $this->httpClient = $httpClient;

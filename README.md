@@ -79,14 +79,17 @@ $xda = new XboxDealApi($httpClient, $httpRequestFactory);
 
 // Fetch data from the API or deal exceptions if something went wrong.
 try {
-    $data = $xda->channelEndpoint()->channel('TopFree')->fetch();
+    $channelList = $xda->channelEndpoint()->channel('TopFree')->fetch();
 } catch (XDAException $e) {
     echo 'OpenWeatherMap exception: ' . $e->getMessage() . ' (Code ' . $e->getCode() . ').';
 } catch (Throwable $e) {
     echo 'General exception: ' . $e->getMessage() . ' (Code ' . $e->getCode() . ').';
 }
 
-print_r($data);
+// Print the result.
+foreach ($channelList->items as $item) {
+    echo $item->id . PHP_EOL;
+}
 ```
 
 ## APIs
@@ -109,8 +112,13 @@ You can use the following chaining methods to filter the items:
 #### Example
 
 ```php
-$data = $xda->channelEndpoint()->channel('TopFree')->itemType('Game')->fetch();
+// Fetch the raw data from the API. The result is a json string.
+$rawData = $xda->channelEndpoint()->channel('TopFree')->itemType('Game')->fetchRaw();
 print_r($data);
+
+// Fetch the data as an object.
+$channelList = $xda->channelEndpoint()->channel('TopFree')->itemType('Game')->fetch();
+print_r($channelList->name);
 ```
 
 ### Product Detail

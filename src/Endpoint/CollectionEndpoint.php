@@ -33,6 +33,9 @@ class CollectionEndpoint implements EndpointInterface
     {
         $this->api = $api;
 
+        // Set default channel
+        $this->channel = 'TopFree';
+
         // Set default query params
         $this->queryParams = [
             'ItemTypes' => 'Game',

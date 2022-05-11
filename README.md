@@ -1,7 +1,6 @@
 <h1 align="center"> xbox-deal-api </h1>
 
-<p align="center"> a xbox product deal api SDK.</p>
-
+<p align="center"> An SDK that can help you get the Xbox product information.</p>
 
 ## Getting Started
 
@@ -12,7 +11,8 @@
 
 ### Installation
 
-This package is available on [Packagist](https://packagist.org/packages/gz-hejiehui/xbox-deal-api) and is best installed using [Composer](http://getcomposer.org/).
+This package is available on [Packagist](https://packagist.org/packages/gz-hejiehui/xbox-deal-api) and is best installed
+using [Composer](http://getcomposer.org/).
 
 ```shell
 composer require gz-hejiehui/xbox-deal-api -vvv
@@ -37,7 +37,8 @@ composer require "php-http/guzzle6-adapter:^2.0 || ^1.0"
 
 ## Usage
 
-All APIs can be accessed through the `\Gzhejiehui\XboxDealApi\XboxDealApi` object. To construct this object, you need to pass a PSR-18 compatible HTTP client and a PSR-17 compatible HTTP request factory to the constructor:
+All APIs can be accessed through the `\Gzhejiehui\XboxDealApi\XboxDealApi` object. To construct this object, you need to
+pass a PSR-18 compatible HTTP client and a PSR-17 compatible HTTP request factory to the constructor:
 
 ```php
 use Gzhejiehui\XboxDealApi\XboxDealApi;
@@ -81,6 +82,30 @@ try {
 print_r($data);
 ```
 
+## APIs
+
+### Channel Item List
+
+This API is used to fetch the list of items for a given collection name.
+
+You can use the following chaining methods to filter the items:
+
+| Method | Type | Default | Description |
+| ------ | ----------- | ----------- | ----------- |
+| `channel()` | string | `TopFree` | The collection name. |
+| `itemType()` | string | `Game` | The item type. |
+| `language()` | string | `en-US` | The response content's language. |
+| `market()` | string | `US` | The market where the items are sold. |
+| `count()` | int | `200` | The number of items to fetch. |
+| `skipItems()` | int | `0` | The number of items to skip. |
+
+#### Example
+
+```php
+$data = $xda->channelEndpoint()->channel('TopFree')->itemType('Game')->fetch();
+print_r($data);
+```
+
 ## Contributing
 
 You can contribute in one of three ways:
@@ -89,7 +114,8 @@ You can contribute in one of three ways:
 2. Answer questions or fix bugs on the [issue tracker](https://github.com/gz-hejiehui/xbox-deal-api/issues).
 3. Contribute new features or update the wiki.
 
-_The code contribution process is not very formal. You just need to make sure that you follow the PSR-0, PSR-1, and PSR-2 coding guidelines. Any new code contributions must be accompanied by unit tests where applicable._
+_The code contribution process is not very formal. You just need to make sure that you follow the PSR-0, PSR-1, and
+PSR-2 coding guidelines. Any new code contributions must be accompanied by unit tests where applicable._
 
 ## License
 

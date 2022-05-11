@@ -2,7 +2,7 @@
 
 namespace GzHejiehui\XboxDealApi;
 
-use GzHejiehui\XboxDealApi\Endpoint\ChannelEndpoint;
+use GzHejiehui\XboxDealApi\Endpoint\CollectionEndpoint;
 use GzHejiehui\XboxDealApi\Endpoint\ProductEndpoint;
 use GzHejiehui\XboxDealApi\Exception\Exception as XboxDealApiException;
 use GzHejiehui\XboxDealApi\Exception\NotFoundException;
@@ -75,13 +75,13 @@ final class XboxDealApi
     }
 
     /**
-     * Get the channel endpoint.
+     * Get the collection endpoint.
      *
-     * @return ChannelEndpoint
+     * @return CollectionEndpoint
      */
-    public function channelEndpoint(): ChannelEndpoint
+    public function collection(): CollectionEndpoint
     {
-        return new ChannelEndpoint($this);
+        return new CollectionEndpoint($this);
     }
 
     /**

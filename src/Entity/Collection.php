@@ -2,10 +2,10 @@
 
 namespace GzHejiehui\XboxDealApi\Entity;
 
-use GzHejiehui\XboxDealApi\Entity\ChannelList\Item;
-use GzHejiehui\XboxDealApi\Entity\ChannelList\PagingInfo;
+use GzHejiehui\XboxDealApi\Entity\Collection\Item;
+use GzHejiehui\XboxDealApi\Entity\Collection\PagingInfo;
 
-final class ChannelList
+final class Collection
 {
     /**
      * @var array $rawData

@@ -2,12 +2,12 @@
 
 namespace GzHejiehui\XboxDealApi\Endpoint;
 
-use GzHejiehui\XboxDealApi\Entity\ChannelList;
+use GzHejiehui\XboxDealApi\Entity\Collection;
 use GzHejiehui\XboxDealApi\Exception\Exception as XboxDealApiException;
 use GzHejiehui\XboxDealApi\XboxDealApi;
 use Psr\Http\Client\ClientExceptionInterface;
 
-class ChannelEndpoint implements EndpointInterface
+class CollectionEndpoint implements EndpointInterface
 {
     /**
      * @var XboxDealApi $api
@@ -15,9 +15,9 @@ class ChannelEndpoint implements EndpointInterface
     private XboxDealApi $api;
 
     /**
-     * @var string $channelName
+     * @var string $channel
      */
-    private string $channelName;
+    private string $channel;
 
     /**
      * @var array $queryParams
@@ -25,15 +25,13 @@ class ChannelEndpoint implements EndpointInterface
     private array $queryParams;
 
     /**
-     * ChannelEndpoint constructor.
+     * CollectionEndpoint constructor.
      *
      * @param XboxDealApi $api
-     * @param string $queryChannel
      */
-    public function __construct(XboxDealApi $api, string $queryChannel = 'TopFree')
+    public function __construct(XboxDealApi $api)
     {
         $this->api = $api;
-        $this->channelName = $queryChannel;
 
         // Set default query params
         $this->queryParams = [
@@ -47,14 +45,14 @@ class ChannelEndpoint implements EndpointInterface
     }
 
     /**
-     * Set the channel name to query
+     * Set the query channel
      *
      * @param string $name The channel name
      * @return $this
      */
     public function channel(string $name): self
     {
-        $this->channelName = trim($name);
+        $this->channel = trim($name);
         return $this;
     }
 
@@ -123,14 +121,14 @@ class ChannelEndpoint implements EndpointInterface
     /**
      * Fetch the channel list
      *
-     * @return ChannelList
+     * @return Collection
      * @throws ClientExceptionInterface
      * @throws XboxDealApiException
      */
-    public function fetch(): ChannelList
+    public function fetch(): Collection
     {
         $rawData = $this->api->parseJson($this->fetchRaw());
-        return new ChannelList($rawData);
+        return new Collection($rawData);
     }
 
     /**
@@ -155,7 +153,7 @@ class ChannelEndpoint implements EndpointInterface
      */
     private function buildQueryUrl(): string
     {
-        $uri = 'https://reco-public.rec.mp.microsoft.com/channels/Reco/V8.0/Lists/Computed/' . $this->channelName;
+        $uri = 'https://reco-public.rec.mp.microsoft.com/channels/Reco/V8.0/Lists/Computed/' . $this->channel;
         $query = http_build_query($this->queryParams);
 
         return $uri . '?' . $query;

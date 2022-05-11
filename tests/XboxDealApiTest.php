@@ -2,7 +2,7 @@
 
 namespace GzHejiehui\XboxDealApi\Tests;
 
-use GzHejiehui\XboxDealApi\Endpoint\ChannelEndpoint;
+use GzHejiehui\XboxDealApi\Endpoint\CollectionEndpoint;
 use GzHejiehui\XboxDealApi\Endpoint\ProductEndpoint;
 use GzHejiehui\XboxDealApi\Exception\Exception as XboxDealApiException;
 use GzHejiehui\XboxDealApi\Exception\NotFoundException;
@@ -55,8 +55,8 @@ class XboxDealApiTest extends TestCase
 
     public function testChannelEndpoint()
     {
-        $actual = $this->getApi()->channelEndpoint();
-        $this->assertInstanceOf(ChannelEndpoint::class, $actual);
+        $actual = $this->getApi()->collection();
+        $this->assertInstanceOf(CollectionEndpoint::class, $actual);
     }
 
     public function testProductEndpoint()

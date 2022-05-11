@@ -1,6 +1,6 @@
 <?php
 
-namespace GzHejiehui\XboxDealApi\Entity\ChannelList;
+namespace GzHejiehui\XboxDealApi\Entity\Collection;
 
 class PagingInfo
 {

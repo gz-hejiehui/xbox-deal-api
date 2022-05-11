@@ -106,6 +106,25 @@ $data = $xda->channelEndpoint()->channel('TopFree')->itemType('Game')->fetch();
 print_r($data);
 ```
 
+### Product Detail
+
+This API is used to fetch the detail of a given products.
+
+You can use the following chaining methods to filter the items:
+
+| Method | Type | Default | Description |
+| ------ | ----------- | ----------- | ----------- |
+| `bigIds()` | ...string | `C48ZFTBQ17Q3` | The product IDs. |
+| `market()` | string | `US` | The market where the products are sold. |
+| `language()` | string | `en-US` | The response content's language. |
+
+#### Example
+
+```php
+$data = $xda->productDetailEndpoint()->bigIds('C48ZFTBQ17Q3', '9NQQ8B4PJR25')->language('zh-HK')->fetch();
+print_r($data);
+```
+
 ## Contributing
 
 You can contribute in one of three ways:

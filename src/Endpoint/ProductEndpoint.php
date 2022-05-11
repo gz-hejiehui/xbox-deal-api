@@ -13,11 +13,21 @@ class ProductEndpoint implements EndpointInterface
      */
     private XboxDealApi $api;
 
+    /**
+     * @var array $queryParams
+     */
     private array $queryParams;
 
+    /**
+     * ProductEndpoint constructor.
+     *
+     * @param XboxDealApi $api
+     */
     public function __construct(XboxDealApi $api)
     {
         $this->api = $api;
+
+        // Set default query params
         $this->queryParams = [
             'bigIds' => 'C48ZFTBQ17Q3',
             'market' => 'US',
@@ -27,6 +37,8 @@ class ProductEndpoint implements EndpointInterface
     }
 
     /**
+     * Set the query product ids.
+     *
      * @param string ...$bigIds
      * @return $this
      */
@@ -37,6 +49,8 @@ class ProductEndpoint implements EndpointInterface
     }
 
     /**
+     * Set the query market.
+     *
      * @param string $market
      * @return $this
      */
@@ -47,6 +61,8 @@ class ProductEndpoint implements EndpointInterface
     }
 
     /**
+     * Set the query languages.
+     *
      * @param string $language
      * @return $this
      */
@@ -57,8 +73,9 @@ class ProductEndpoint implements EndpointInterface
     }
 
     /**
-     * @return array
+     * Fetch the product detail.
      *
+     * @return array
      * @throws ClientExceptionInterface
      * @throws XboxDealApiException
      */
@@ -68,10 +85,9 @@ class ProductEndpoint implements EndpointInterface
     }
 
     /**
-     * Fetches the raw data from the API.
+     * Fetch the raw product detail.
      *
      * @return string
-     *
      * @throws ClientExceptionInterface
      * @throws XboxDealApiException
      */
@@ -83,7 +99,7 @@ class ProductEndpoint implements EndpointInterface
     }
 
     /**
-     * Builds the query url.
+     * Build the query url.
      *
      * @return string
      */

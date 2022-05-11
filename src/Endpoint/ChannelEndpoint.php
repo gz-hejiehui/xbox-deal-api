@@ -2,6 +2,7 @@
 
 namespace GzHejiehui\XboxDealApi\Endpoint;
 
+use GzHejiehui\XboxDealApi\ChannelList;
 use GzHejiehui\XboxDealApi\Exception\Exception as XboxDealApiException;
 use GzHejiehui\XboxDealApi\XboxDealApi;
 use Psr\Http\Client\ClientExceptionInterface;
@@ -79,14 +80,15 @@ class ChannelEndpoint implements EndpointInterface
     }
 
     /**
-     * @return array
+     * @return ChannelList
      *
      * @throws ClientExceptionInterface
      * @throws XboxDealApiException
      */
-    public function fetch(): array
+    public function fetch(): ChannelList
     {
-        return $this->api->parseJson($this->fetchRaw());
+        $rawData = $this->api->parseJson($this->fetchRaw());
+        return new ChannelList($rawData);
     }
 
     /**

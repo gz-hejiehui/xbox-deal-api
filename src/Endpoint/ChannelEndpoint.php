@@ -14,7 +14,14 @@ class ChannelEndpoint implements EndpointInterface
      */
     private XboxDealApi $api;
 
-    private string $queryChannel;
+    /**
+     * @var string $channelName
+     */
+    private string $channelName;
+
+    /**
+     * @var array $queryParams
+     */
     private array $queryParams;
 
     /**
@@ -26,7 +33,9 @@ class ChannelEndpoint implements EndpointInterface
     public function __construct(XboxDealApi $api, string $queryChannel = 'TopFree')
     {
         $this->api = $api;
-        $this->queryChannel = $queryChannel;
+        $this->channelName = $queryChannel;
+
+        // Set default query params
         $this->queryParams = [
             'ItemTypes' => 'Game',
             'Language' => 'en-US',
@@ -37,51 +46,84 @@ class ChannelEndpoint implements EndpointInterface
         ];
     }
 
-    public function channel($name): self
+    /**
+     * Set the channel name to query
+     *
+     * @param string $name The channel name
+     * @return $this
+     */
+    public function channel(string $name): self
     {
-        $this->queryChannel = trim($name);
+        $this->channelName = trim($name);
         return $this;
     }
 
+    /**
+     * Set the query item type
+     *
+     * @param string $itemType
+     * @return $this
+     */
     public function itemType(string $itemType): self
     {
         $this->queryParams['ItemTypes'] = trim($itemType);
         return $this;
     }
 
+    /**
+     * Set the query language
+     *
+     * @param string $language
+     * @return $this
+     */
     public function language(string $language): self
     {
         $this->queryParams['Language'] = trim($language);
         return $this;
     }
 
+    /**
+     * Set the query market
+     *
+     * @param string $market
+     * @return $this
+     */
     public function market(string $market): self
     {
         $this->queryParams['Market'] = $market;
         return $this;
     }
 
-    public function count(int $count): self
+    /**
+     * Set the query page
+     *
+     * @param int $page The page number, default is 1
+     * @param int $count The number of items per page, default is 200
+     * @return $this
+     */
+    public function page(int $page, int $count = 200): self
     {
         $this->queryParams['count'] = $count;
+        $this->queryParams['skipItems'] = $count * ($page - 1);
         return $this;
     }
 
+    /**
+     * Set the query device family
+     *
+     * @param string $deviceFamily
+     * @return $this
+     */
     public function deviceFamily(string $deviceFamily): self
     {
         $this->queryParams['deviceFamily'] = $deviceFamily;
         return $this;
     }
 
-    public function skipItems(int $skipItems): self
-    {
-        $this->queryParams['skipItems'] = $skipItems;
-        return $this;
-    }
-
     /**
-     * @return ChannelList
+     * Fetch the channel list
      *
+     * @return ChannelList
      * @throws ClientExceptionInterface
      * @throws XboxDealApiException
      */
@@ -92,7 +134,7 @@ class ChannelEndpoint implements EndpointInterface
     }
 
     /**
-     * Fetches the raw data from the API.
+     * Fetch the raw data from the API.
      *
      * @return string
      *
@@ -107,13 +149,13 @@ class ChannelEndpoint implements EndpointInterface
     }
 
     /**
-     * Builds the query url.
+     * Build the query url.
      *
      * @return string
      */
     private function buildQueryUrl(): string
     {
-        $uri = 'https://reco-public.rec.mp.microsoft.com/channels/Reco/V8.0/Lists/Computed/' . $this->queryChannel;
+        $uri = 'https://reco-public.rec.mp.microsoft.com/channels/Reco/V8.0/Lists/Computed/' . $this->channelName;
         $query = http_build_query($this->queryParams);
 
         return $uri . '?' . $query;

@@ -79,7 +79,7 @@ $xda = new XboxDealApi($httpClient, $httpRequestFactory);
 
 // Fetch data from the API or deal exceptions if something went wrong.
 try {
-    $channelList = $xda->channelEndpoint()->channel('TopFree')->fetch();
+    $collection = $xda->collection()->channel('TopFree')->fetch();
 } catch (XDAException $e) {
     echo 'OpenWeatherMap exception: ' . $e->getMessage() . ' (Code ' . $e->getCode() . ').';
 } catch (Throwable $e) {
@@ -87,14 +87,14 @@ try {
 }
 
 // Print the result.
-foreach ($channelList->items as $item) {
+foreach ($collection->items as $item) {
     echo $item->id . PHP_EOL;
 }
 ```
 
 ## APIs
 
-### Channel Item List
+### Product Collection
 
 This API is used to fetch the list of items for a given collection name.
 
@@ -106,19 +106,18 @@ You can use the following chaining methods to filter the items:
 | `itemType()` | string | `Game` | The item type. |
 | `language()` | string | `en-US` | The response content's language. |
 | `market()` | string | `US` | The market where the items are sold. |
-| `count()` | int | `200` | The number of items to fetch. |
-| `skipItems()` | int | `0` | The number of items to skip. |
+| `page()` | int | `1`, `200` | The page of items to fetch. |
 
 #### Example
 
 ```php
 // Fetch the raw data from the API. The result is a json string.
-$rawData = $xda->channelEndpoint()->channel('TopFree')->itemType('Game')->fetchRaw();
+$rawData = $xda->collection()->channel('TopFree')->itemType('Game')->fetchRaw();
 print_r($data);
 
 // Fetch the data as an object.
-$channelList = $xda->channelEndpoint()->channel('TopFree')->itemType('Game')->fetch();
-print_r($channelList->name);
+$collection = $xda->collection()->channel('TopFree')->itemType('Game')->fetch();
+print_r($collection->name);
 ```
 
 ### Product Detail

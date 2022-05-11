@@ -2,7 +2,7 @@
 
 namespace GzHejiehui\XboxDealApi;
 
-use GzHejiehui\XboxDealApi\Endpoint\ChannelEndpoint;
+use GzHejiehui\XboxDealApi\Endpoint\CollectionEndpoint;
 use GzHejiehui\XboxDealApi\Endpoint\ProductEndpoint;
 use GzHejiehui\XboxDealApi\Exception\Exception as XboxDealApiException;
 use GzHejiehui\XboxDealApi\Exception\NotFoundException;
@@ -13,9 +13,22 @@ use Psr\Http\Message\RequestFactoryInterface;
 
 final class XboxDealApi
 {
+    /**
+     * @var ClientInterface The PSR-18 HTTP client.
+     */
     private ClientInterface $httpClient;
+
+    /**
+     * @var RequestFactoryInterface The PSR-18 HTTP request factory.
+     */
     private RequestFactoryInterface $requestFactory;
 
+    /**
+     * XboxDealApi constructor.
+     *
+     * @param ClientInterface $httpClient
+     * @param RequestFactoryInterface $requestFactory
+     */
     public function __construct(ClientInterface $httpClient, RequestFactoryInterface $requestFactory)
     {
         $this->httpClient = $httpClient;
@@ -62,13 +75,13 @@ final class XboxDealApi
     }
 
     /**
-     * Get the channel endpoint.
+     * Get the collection endpoint.
      *
-     * @return ChannelEndpoint
+     * @return CollectionEndpoint
      */
-    public function channelEndpoint(): ChannelEndpoint
+    public function collection(): CollectionEndpoint
     {
-        return new ChannelEndpoint($this);
+        return new CollectionEndpoint($this);
     }
 
     /**

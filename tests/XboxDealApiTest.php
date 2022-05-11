@@ -61,7 +61,7 @@ class XboxDealApiTest extends TestCase
 
     public function testProductEndpoint()
     {
-        $actual = $this->getApi()->productEndpoint();
+        $actual = $this->getApi()->product();
         $this->assertInstanceOf(ProductEndpoint::class, $actual);
     }
 }

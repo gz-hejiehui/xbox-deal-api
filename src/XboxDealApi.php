@@ -89,7 +89,7 @@ final class XboxDealApi
      *
      * @return ProductEndpoint
      */
-    public function productEndpoint(): ProductEndpoint
+    public function product(): ProductEndpoint
     {
         return new ProductEndpoint($this);
     }

@@ -2,7 +2,7 @@
 
 namespace GzHejiehui\XboxDealApi\Endpoint;
 
-use GzHejiehui\XboxDealApi\ChannelList;
+use GzHejiehui\XboxDealApi\Entity\ChannelList;
 use GzHejiehui\XboxDealApi\Exception\Exception as XboxDealApiException;
 use GzHejiehui\XboxDealApi\XboxDealApi;
 use Psr\Http\Client\ClientExceptionInterface;

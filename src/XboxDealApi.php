@@ -3,6 +3,7 @@
 namespace GzHejiehui\XboxDealApi;
 
 use GzHejiehui\XboxDealApi\Endpoint\CollectionEndpoint;
+use GzHejiehui\XboxDealApi\Endpoint\GamePass;
 use GzHejiehui\XboxDealApi\Endpoint\ProductEndpoint;
 use GzHejiehui\XboxDealApi\Exception\Exception as XboxDealApiException;
 use GzHejiehui\XboxDealApi\Exception\NotFoundException;
@@ -92,5 +93,15 @@ final class XboxDealApi
     public function productEndpoint(): ProductEndpoint
     {
         return new ProductEndpoint($this);
+    }
+
+    /**
+     * Get the game pass endpoint.
+     *
+     * @return GamePass
+     */
+    public function gamePass(): GamePass
+    {
+        return new GamePass($this);
     }
 }
